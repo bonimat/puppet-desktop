@@ -57,9 +57,7 @@ class pulse (
     package { 'libwebkitgtk-1.0-0:i386':
       ensure => present,
     }
-    package { 'libproxy1:i386':
-      ensure => present,
-    }
+
     package { 'libproxy1-plugin-gsettings:i386':
       ensure => present,
     }
