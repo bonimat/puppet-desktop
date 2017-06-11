@@ -48,6 +48,31 @@ class pulse (
   ) {
 
   if $osfamily == 'Debian' {
+    package { 'lib32z1':
+      ensure => present,
+    }
+    package { 'libc6-i386':
+      ensure => present,
+    }
+    package { 'libwebkitgtk-1.0-0:i386':
+      ensure => present,
+    }
+    package { 'libproxy1:i386':
+      ensure => present,
+    }
+    package { 'libproxy1-plugin-gsettings:i386':
+      ensure => present,
+    }
+    package { 'libproxy1-plugin-webkit:i386':
+      ensure => present,
+    }
+    # package { 'libdconf1:i386':
+    #   ensure => present,
+    # }
+    package { 'dconf-gsettings-backend:i386':
+      ensure => present,
+    }
+
     if $ensure == 'present' {
       exec {"download_unibo_pulse_from_${url}":
         command =>"/usr/bin/curl -o /tmp/pulse.deb ${url}",
