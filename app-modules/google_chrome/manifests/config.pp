@@ -16,7 +16,8 @@ class google_chrome::config() inherits google_chrome::params {
         key               => '7FAC5991',
         repos             => 'main',
       #  include_src       => false,
-      }
+         notify => Exec['apt_update'] 
+     }
     }
     'Suse': {
       zypprepo { $google_chrome::params::repo_name:
