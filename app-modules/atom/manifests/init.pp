@@ -64,10 +64,17 @@
 #      }
 #
 class atom { 
-  apt::ppa { 'ppa:webupd8team/atom': }
+  exec { 'apt-update':
+    command => 'apt-get update',
+    path    => '/bin:/usr/bin',
+    timeout => 0
+  }
+  apt::ppa { 'ppa:webupd8team/atom':
+     before => Exec['apt-update']
+  }
   package {'atom':
-     ensure => 'installed',
-     require => Apt::Ppa['ppa:webupd8team/atom'],
-  }    
+     ensure  => present,
+     require => Exec['apt-update']
+  }
 }
 
