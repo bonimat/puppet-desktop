@@ -5,7 +5,7 @@ class netbeans(
 
   $install_base = "/opt/netbeans"
   $install_location = "${$install_base}/${netbeans_version}/"
-  $options = "--silent \"-J-Dnb-base.installation.location=${install_location}\""
+  $options = "--silent -J-Dnb-base.installation.location=${install_location}"
 
   # Only support Ubuntu at the moment
   if $osfamily == 'Debian'{
