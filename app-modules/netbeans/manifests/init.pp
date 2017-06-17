@@ -21,13 +21,14 @@ class netbeans(
         ensure => 'directory',
       }
       -> exec{"download_netbeans_${netbeans_version}":
+        # http://download.netbeans.org/netbeans/8.2/final/bundles/netbeans-8.2-php-linux-x64.sh
         command => "/usr/bin/wget --output-document /tmp/netbeans-${netbeans_version}-linux.sh http://download.netbeans.org/netbeans/${netbeans_version}/final/bundles/netbeans-${netbeans_version}-linux.sh",
         unless  => "/usr/bin/test -f /tmp/netbeans-${netbeans_version}-linux.sh",
-        #require => [ Package["wget"] ],
       }
       -> exec{"install_netbeans_${netbeans_version}":
         command => "/bin/bash /tmp/netbeans-${netbeans_version}-linux.sh ${options}",
         unless  => "/usr/bin/test -d /opt/netbeans/${netbeans_version}/bin/",
+	require => File['/usr/bin/java'],
       }
     }
     else{
