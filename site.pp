@@ -4,7 +4,9 @@ include ::terminal
 include ::atom
 include ::google_chrome
 include ::jdk_oracle
-include ::netbeans
+class{'netbeans':
+  require => Class['jdk_oracle']
+}
 include ::pulse
 class { 'python' :
   version    => 'system',
