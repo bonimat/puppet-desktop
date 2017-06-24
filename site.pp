@@ -15,5 +15,7 @@ class { 'python' :
   virtualenv => 'absent',
   gunicorn   => 'absent',
 }
+# tolto le impostazioni per il php
+include ::oci8
 include ::docker
 include ::docker_compose
